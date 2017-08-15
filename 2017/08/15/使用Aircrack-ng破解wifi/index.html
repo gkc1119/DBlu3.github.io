@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>破解wifi | DBlue&#39;s Blog</title>
+  <title>使用Aircrack-ng破解wifi | DBlue&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="基本环境 一个usb无线网卡  芯片最好是kali支持的，这里推荐RT3070和RTL8187，我用的是RT3070的，如果你电脑自带的网卡刚好支持kali，那也可以用自带的网卡   kali2.0  这个不用多说了吧，安装的话可以直接安装在VMware上    WPS破解开启了WPS的路由器可以用pin码破解，比爆破稳定多了，不过现在的路由器一般都开启了防pin功能，没有防pin功能的老路由器是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="破解wifi">
-<meta property="og:url" content="http://yoursite.com/2017/08/15/破解wifi/index.html">
+<meta property="og:title" content="使用Aircrack-ng破解wifi">
+<meta property="og:url" content="http://yoursite.com/2017/08/15/使用Aircrack-ng破解wifi/index.html">
 <meta property="og:site_name" content="DBlue&#39;s Blog">
 <meta property="og:description" content="基本环境 一个usb无线网卡  芯片最好是kali支持的，这里推荐RT3070和RTL8187，我用的是RT3070的，如果你电脑自带的网卡刚好支持kali，那也可以用自带的网卡   kali2.0  这个不用多说了吧，安装的话可以直接安装在VMware上    WPS破解开启了WPS的路由器可以用pin码破解，比爆破稳定多了，不过现在的路由器一般都开启了防pin功能，没有防pin功能的老路由器是">
 <meta property="og:image" content="http://img.blog.csdn.net/20170815090424744?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2tjMTExOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
@@ -22,9 +22,9 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20170815094725488?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2tjMTExOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170815095219166?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2tjMTExOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170815095604384?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2tjMTExOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-08-15T02:06:06.329Z">
+<meta property="og:updated_time" content="2017-08-15T14:35:04.866Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="破解wifi">
+<meta name="twitter:title" content="使用Aircrack-ng破解wifi">
 <meta name="twitter:description" content="基本环境 一个usb无线网卡  芯片最好是kali支持的，这里推荐RT3070和RTL8187，我用的是RT3070的，如果你电脑自带的网卡刚好支持kali，那也可以用自带的网卡   kali2.0  这个不用多说了吧，安装的话可以直接安装在VMware上    WPS破解开启了WPS的路由器可以用pin码破解，比爆破稳定多了，不过现在的路由器一般都开启了防pin功能，没有防pin功能的老路由器是">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20170815090424744?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2tjMTExOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
   
@@ -148,19 +148,19 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-破解wifi" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-使用Aircrack-ng破解wifi" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      破解wifi
+      使用Aircrack-ng破解wifi
     </h1>
   
 
         
-        <a href="/2017/08/15/破解wifi/" class="archive-article-date">
+        <a href="/2017/08/15/使用Aircrack-ng破解wifi/" class="archive-article-date">
   	<time datetime="2017-08-15T02:02:58.184Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
 </a>
         
@@ -183,9 +183,13 @@
 <h1 id="WPS破解"><a href="#WPS破解" class="headerlink" title="WPS破解"></a>WPS破解</h1><p>开启了WPS的路由器可以用pin码破解，比爆破稳定多了，不过现在的路由器一般都开启了防pin功能，没有防pin功能的老路由器是肯定可以跑出pin码的，拿到了pin码，wifi密码不管如何修改都可以秒破，这里就不多说了</p>
 <h2 id="扫描是否开启WPS"><a href="#扫描是否开启WPS" class="headerlink" title="扫描是否开启WPS"></a>扫描是否开启WPS</h2><blockquote>
 <p>wifite 或者 wash -i 网卡</p>
-<h2 id="reaver破解"><a href="#reaver破解" class="headerlink" title="reaver破解"></a>reaver破解</h2><p>reaver -i 网卡 -b  目标BSSID -vv -t 10 -d 10</p>
+</blockquote>
+<h2 id="reaver破解"><a href="#reaver破解" class="headerlink" title="reaver破解"></a>reaver破解</h2><blockquote>
+<p>reaver -i 网卡 -b  目标BSSID -vv -t 10 -d 10</p>
+</blockquote>
 <h1 id="WPA-WPA2破解"><a href="#WPA-WPA2破解" class="headerlink" title="WPA/WPA2破解"></a>WPA/WPA2破解</h1><p>这个就要靠字典爆破了，爆破的成功与否取决于你的字典是否强大，爆破的工具很多，今天就只写一下用Aircrack-ng爆破吧</p>
-<h2 id="开启你的kali，插上你的网卡"><a href="#开启你的kali，插上你的网卡" class="headerlink" title="开启你的kali，插上你的网卡"></a>开启你的kali，插上你的网卡</h2><p>找到你自己的网卡并连接</p>
+<h2 id="开启你的kali，插上你的网卡"><a href="#开启你的kali，插上你的网卡" class="headerlink" title="开启你的kali，插上你的网卡"></a>开启你的kali，插上你的网卡</h2><blockquote>
+<p>找到你自己的网卡并连接</p>
 </blockquote>
 <p><img src="http://img.blog.csdn.net/20170815090424744?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZ2tjMTExOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="网卡"></p>
 <h2 id="查看网卡"><a href="#查看网卡" class="headerlink" title="查看网卡"></a>查看网卡</h2><blockquote>
@@ -314,7 +318,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/15/破解wifi/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/15/使用Aircrack-ng破解wifi/" alt="微信分享二维码">
     </div>
 </div>
 
